@@ -1,15 +1,27 @@
-import Head from "next/head";
+import React from "react";
+import { Canvas, useFrame } from "@react-three/fiber";
+import { OrbitControls, Sphere, useTexture } from "@react-three/drei";
+import { TextureLoader, BackSide } from "three";
 
-import Layout from "../components/Layout";
+const RealisticSphere = () => {
+  const texture = useTexture("/realistic_background.jpg");
+
+  return (
+    <Sphere args={[500, 60, 40]}>
+      <meshBasicMaterial attach="material" map={texture} side={BackSide} />
+    </Sphere>
+  );
+};
+
 export default function Home() {
   return (
-    <>
-
-    <Layout
-      title="Select Incubator"
-      description="Looking for the Perfect Automated Incubator for your Startup? Discover the Top Selection of Incubators for Entrepreneurs. Find the Ideal Automated Incubator With our App to Accelerate your Business Growth and Success."
-      keywords="automated incubator, startup incubator, automated startup support, AI-powered incubator, tech incubator, digital incubator, automated mentorship, funding automation, business growth automation, startup resources automation"
-    ></Layout>
-    </>
+    <div className="w-screen h-screen">
+      <Canvas>
+        <ambientLight intensity={0.5} />
+        <pointLight position={[10, 10, 10]} />
+        <RealisticSphere />
+        <OrbitControls />
+      </Canvas>
+    </div>
   );
 }
