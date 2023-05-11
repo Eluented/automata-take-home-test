@@ -1,7 +1,17 @@
 import React from "react";
-import { Canvas, useFrame } from "@react-three/fiber";
-import { OrbitControls, Sphere, useTexture } from "@react-three/drei";
-import { TextureLoader, BackSide } from "three";
+import { Canvas, useFrame, useThree } from "@react-three/fiber";
+import {
+  OrbitControls,
+  Sphere,
+  useTexture,
+  Text,
+  Stars,
+  Text3D,
+  Center,
+} from "@react-three/drei";
+import { FontLoader, TextureLoader, BackSide } from "three";
+import TextScene from "../components/TextScene";
+
 
 const RealisticSphere = () => {
   const texture = useTexture("/realistic_background.jpg");
@@ -15,12 +25,14 @@ const RealisticSphere = () => {
 
 export default function Home() {
   return (
-    <div className="w-screen h-screen">
-      <Canvas>
+    <div className="w-screen h-screen cursor-grab">
+      <Canvas >
         <ambientLight intensity={0.5} />
-        <pointLight position={[10, 10, 10]} />
+        <pointLight position={[5, 5, 5]} />
         <RealisticSphere />
-        <OrbitControls />
+        <OrbitControls rotateSpeed={0.5} />
+        <TextScene margin={2} />
+
       </Canvas>
     </div>
   );
