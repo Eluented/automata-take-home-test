@@ -13,11 +13,13 @@ export default function Layout({ children, title, description, keywords }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className="bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-lime-500 to-emerald-600 spacer layer1">
-        <Navbar />
+        <main className="layout w-screen min-h-screen">
+          <Navbar />
 
-        <main className="layout">{children}</main>
+          {children}
 
-        <Footer />
+          <Footer />
+        </main>
       </div>
     </>
   );
