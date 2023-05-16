@@ -22,14 +22,16 @@ import {
   RadioGroup,
   Stack,
 } from "@chakra-ui/react";
+import axios from "axios";
 
 export default function Incubator() {
   const [incubatorFormData, setIncubatorFormData] = useState({
-    microplates: "44",
+    microplates: 44,
     tempRange: "",
     humidityRange: "",
     incubatorPlacement: "",
     externalControlBox: "false",
+    isLoading: false
   });
 
   const formSubmitDisable =
@@ -52,10 +54,9 @@ export default function Incubator() {
     });
   };
 
-  useEffect(() => {
-    console.log(incubatorFormData);
-  }, [incubatorFormData]);
+  const toast = useToast();
 
+  // Checks if BT or SA is Selected and Displays the Radio Button for External Control Box
   useEffect(() => {
     if (
       incubatorFormData.incubatorPlacement !== "BT" &&
@@ -67,6 +68,45 @@ export default function Incubator() {
       });
     }
   }, [incubatorFormData.incubatorPlacement]);
+
+  const handleSubmit = async () => {
+    try {
+      setIncubatorFormData((prev) => ({
+        ...prev,
+        isLoading: true,
+      }));
+
+      const response = await axios.post("http://localhost:8080/incubator", incubatorFormData);
+
+
+      const { Code, productModel } = response.data;
+
+      toast({
+        title: "Incubator Recommendation",
+        description: `The recommended LiCONiC Incubator is: ${productModel}, the product code is: ${Code}`,
+        status: "success",
+        isClosable: true,
+        duration: null
+      });
+      
+
+    } catch (error) {
+      console.error("Failed to submit the form.", error);
+
+      const errorMessage = error.response?.data?.error || "An error occurred.";
+
+      toast({
+        title: "Error",
+        description: errorMessage,
+        status: "error",
+        isClosable: true,
+      });
+    }
+    setIncubatorFormData((prev) => ({
+      ...prev,
+      isLoading: false,
+    }));
+  };
 
   return (
     <>
@@ -129,10 +169,11 @@ export default function Incubator() {
                   bgColor="gray.50"
                   size={"lg"}
                 >
-                  <option value="1">-20-0°C</option>
-                  <option value="2">04-25°C</option>
-                  <option value="3">04-50°C</option>
-                  <option value="4">33-50°C</option>
+                  <option value="-20-0">-20-0°C</option>
+                  <option value="04-25">04-25°C</option>
+                  <option value="04-50">04-50°C</option>
+                  <option value="33-50">33-50°C</option>
+                  <option value="none">No Temperature</option>
                 </Select>
               </Flex>
             </FormControl>
@@ -153,12 +194,13 @@ export default function Incubator() {
                 bgColor="gray.50"
                 size={"lg"}
               >
-                <option value="1">02-50%</option>
-                <option value="2">04-50%</option>
-                <option value="3">10-95%</option>
-                <option value="4">90-95%</option>
-                <option value="5">max 90%</option>
-                <option value="6">max 95%</option>
+                <option value="02-50%">02-50%</option>
+                <option value="04-50%">04-50%</option>
+                <option value="10-95%">10-95%</option>
+                <option value="90-95%">90-95%</option>
+                <option value="max_90%">max 90%</option>
+                <option value="max_95%">max 95%</option>
+                <option value="none">No Humidity</option>
               </Select>
             </FormControl>
 
@@ -222,11 +264,11 @@ export default function Incubator() {
 
               <Button
                 aria-label="Form Submit Button"
-                // isDisabled={formSubmitDisable}
+                isDisabled={formSubmitDisable}
                 className="w-[15rem] mb-14"
-                // isLoading={contactState.isLoading}
+                isLoading={incubatorFormData.isLoading}
                 loadingText="Submitting"
-                // onClick={handleSubmit}
+                onClick={handleSubmit}
                 backgroundColor="rgb(249 115 22)"
                 color="rgb(255 255 255)"
                 _hover={{

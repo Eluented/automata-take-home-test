@@ -1,0 +1,20 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+flask = "*"
+werkzeug = "*"
+flask-cors = "*"
+pytest = "*"
+
+[dev-packages]
+coverage = "*"
+
+[requires]
+python_version = "3.8"
+
+[scripts]
+dev = "flask run --port=8080 --debug"
+test = "pipenv run python -pytest"
