@@ -11,6 +11,7 @@ import {
 } from "@react-three/drei";
 import { FontLoader, TextureLoader, BackSide } from "three";
 import TextScene from "../components/TextScene";
+import Head from "next/head";
 
 
 const RealisticSphere = () => {
@@ -25,6 +26,12 @@ const RealisticSphere = () => {
 
 export default function Home() {
   return (
+    <>
+    <Head>
+    <title>Welcome to the Lab!</title>
+    <meta name="description" content="3D Lab Environment"/>
+    <link rel="icon" href="/favicon.ico" />
+  </Head>
     <div className="w-screen h-screen cursor-grab">
       <Canvas >
         <ambientLight intensity={0.5} />
@@ -35,5 +42,6 @@ export default function Home() {
 
       </Canvas>
     </div>
+    </>
   );
 }

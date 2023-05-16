@@ -31,7 +31,7 @@ export default function Incubator() {
     humidityRange: "",
     incubatorPlacement: "",
     externalControlBox: "false",
-    isLoading: false
+    isLoading: false,
   });
 
   const formSubmitDisable =
@@ -76,8 +76,10 @@ export default function Incubator() {
         isLoading: true,
       }));
 
-      const response = await axios.post("http://localhost:8080/incubator", incubatorFormData);
-
+      const response = await axios.post(
+        "http://localhost:8080/incubator",
+        incubatorFormData
+      );
 
       const { Code, productModel } = response.data;
 
@@ -86,10 +88,8 @@ export default function Incubator() {
         description: `The recommended LiCONiC Incubator is: ${productModel}, the product code is: ${Code}`,
         status: "success",
         isClosable: true,
-        duration: null
+        duration: null,
       });
-      
-
     } catch (error) {
       console.error("Failed to submit the form.", error);
 
@@ -122,8 +122,16 @@ export default function Incubator() {
             className="space-y-8 overflow-y-auto md:mt-12"
             padding={5}
           >
-            <h1 className="text-2xl font-bold flex justify-center">
-              Please Input Incubator Details
+            <h1 className="text-2xl font-bold justify-center flex">
+              Please Input
+              <a
+                href="https://www.liconic.com/stx.html"
+                rel="noreferrer"
+                target="_blank"
+              >
+              &nbsp;STX&nbsp;
+              </a>
+              Incubator Details
             </h1>
             <FormControl isRequired>
               <FormLabel className="mb-2 text-base font-medium">
@@ -234,10 +242,16 @@ export default function Incubator() {
                 </FormLabel>
                 <RadioGroup
                   name="externalControlBox"
-                  onChange={(value) => handleNumberChange("externalControlBox", value)}
+                  onChange={(value) =>
+                    handleNumberChange("externalControlBox", value)
+                  }
                   value={incubatorFormData.externalControlBox}
                 >
-                  <Stack direction="row" width={"full"} className="w-full flex justify-around">
+                  <Stack
+                    direction="row"
+                    width={"full"}
+                    className="w-full flex justify-around"
+                  >
                     <Radio value="false">Internal</Radio>
                     <Radio value="true">External</Radio>
                   </Stack>
