@@ -1,5 +1,5 @@
 # Take-Home test
-This is my attempt at the task given within the take-home test. 
+This is my attempt at the task given within the take-home test at Automata. 
 
 ## API Installation
 
