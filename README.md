@@ -1,38 +1,48 @@
 # Take-Home test
 This is my attempt at the task given within the take-home test. 
 
-This repository contains a Flask API for Incubator Selection.
-
 ## API Installation
 
 To run the Flask API, follow these steps:
 
 1. Navigate into the api directory from the root:
-```cd api```
+```bash
+cd api
+```
 
 2. Install the project dependencies using Pipenv:
-```pipenv install``
+```bash
+pipenv install
+```
 
 ## API Usage
 
 ### Running the API
 To start the server, use the following command:
-```pipenv run dev```
+```bash
+pipenv run dev
+```
 
 This will start the server on port 8080 with debug mode enabled.
 
 ### Running Tests
 To run the tests, use the following command:
-```pipenv run test```
+```bash
+pipenv run test
+```
 
 This will execute the test suite using pytest.
 
 ### Test Coverage 
 To run the tests with coverage:
-```pipenv run coverage run -m pytest```
+```bash
+pipenv run coverage run -m pytest
+```
 
 To generate a coverage report, use the following command:
-```pipenv run coverage report```
+```bash
+pipenv run coverage report
+```
 
 This command will display a summary of the coverage report, showing the percentage of code covered by tests.
 
@@ -40,13 +50,19 @@ This command will display a summary of the coverage report, showing the percenta
 To run the Next.js project, follow these steps:
 
 1. Navigate into the client directory from the root:
-```cd client```
+```bash
+cd client
+```
 
 2. Install the npm packages:
-```npm i```
+```bash
+npm i
+```
 
 3. Run the project:
-```npm run dev```
+```bash
+npm run dev
+```
 
 ## Technologies Used
 
