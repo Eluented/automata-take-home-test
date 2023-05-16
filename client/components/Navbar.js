@@ -8,8 +8,12 @@ export default function Navbar() {
       <header className="w-full">
         <nav className="text-slate-100 flex justify-center bg-[#022f58]">
           <div className="flex justify-center items-center">
-            <Image src="/automata_logo_2.jpg" width={100} height={100} />
-            <h1 className="text-4xl font-semibold">Automata</h1>
+            <Link href="/" className="cursor-pointer">
+              <Image src="/automata_logo_2.jpg" width={100} height={100} />
+            </Link>
+            <Link href="/" className="cursor-pointer">
+              <h1 className="text-4xl font-semibold">Automata</h1>
+            </Link>
           </div>
         </nav>
       </header>

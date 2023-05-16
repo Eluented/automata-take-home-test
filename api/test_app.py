@@ -24,7 +24,7 @@ def test_process_incubator_data(client):
     response = client.post('/incubator', json=data)
     assert response.status_code == 200
     assert response.get_json() == {
-        "Product Model": "STX44-DC2BT",
+        "productModel": "STX44-DC2BT",
         "Code": "9118 12 56"
     }
 
