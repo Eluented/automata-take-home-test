@@ -122,7 +122,7 @@ export default function Incubator() {
             className="space-y-8 overflow-y-auto md:mt-12"
             padding={5}
           >
-            <h1 className="text-2xl font-bold justify-center flex">
+            <h1 className="text-xl md:text-2xl font-bold justify-center flex">
               Please Input
               <a
                 href="https://www.liconic.com/stx.html"
